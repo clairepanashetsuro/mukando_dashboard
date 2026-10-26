@@ -1,0 +1,144 @@
+.welcome,
+.welcome-splash {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+}
+.welcome {
+  display: flex;
+  flex-direction: column;
+}
+.welcome-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.welcome-wordmark {
+  font-size: var(--fs-splash);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  animation: welcome-wordmark-in 0.8s ease 0.5s both;
+}
+
+.welcome-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  padding: 16px 32px;
+}
+.welcome-stage {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 8px 32px 24px;
+}
+.welcome-slide {
+  width: 100%;
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 64px;
+  animation: welcome-slide-in 0.45s ease both;
+}
+.welcome-art {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.welcome-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.welcome-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+.welcome-title {
+  margin: 0;
+  font-size: var(--fs-hero);
+  line-height: 1.2;
+  color: var(--ink);
+}
+.welcome-text {
+  margin: 0;
+  max-width: 38ch;
+  font-size: var(--fs-welcome-text);
+  color: var(--muted);
+}
+.welcome-controls {
+  width: 100%;
+  max-width: 1344px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 32px 32px;
+}
+
+@keyframes welcome-wordmark-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    letter-spacing: 0.2em;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    letter-spacing: 0.02em;
+  }
+}
+
+@keyframes welcome-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .welcome-top {
+    padding: 12px 16px;
+  }
+  .welcome-stage {
+    padding: 4px 16px 16px;
+    align-items: start;
+  }
+  .welcome-slide {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .welcome-title {
+    font-size: var(--fs-h2);
+  }
+  .welcome-controls {
+    padding: 12px 16px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-wordmark,
+  .welcome-slide {
+    animation: none;
+  }
+}

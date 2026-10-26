@@ -1,0 +1,77 @@
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #003366;
+  --muted: #3f5c7c;
+  --line: #cce0ff;
+  --line-strong: #007acc;
+  --brand: #00509e;
+  --brand-ink: #ffffff;
+  --brand-soft: #cce0ff;
+  --success: #14692d;
+  --success-soft: #dcf2e3;
+  --warn: #8a5300;
+  --warn-soft: #fbefd9;
+  --bad: #b3261e;
+  --bad-soft: #fbe4e1;
+  --info: #007acc;
+  --info-soft: #cce0ff;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0, 51, 102, 0.08);
+  --navy-rgb: 0, 51, 102;
+  --fs-body: 1.0625rem;
+  --fs-h2: 1.75rem;
+  --fs-h3: 1.25rem;
+  --fs-td: 1.0625rem;
+  --fs-th: 0.875rem;
+  --fs-btn: 1.0625rem;
+  --fs-btn-small: 0.9375rem;
+  --fs-input: 1.0625rem;
+  --fs-stat-label: 0.875rem;
+  --fs-stat-value: 2.125rem;
+  --fs-small: 0.875rem;
+  --fs-nav: 1.0625rem;
+  --fs-badge: 0.875rem;
+  --fs-label: 0.9375rem;
+  --fs-message: 0.9375rem;
+  --fs-brand: 1.375rem;
+  --fs-brand-lg: 1.875rem;
+  --fs-hero: 2.25rem;
+  --fs-splash: 4.75rem;
+  --lh-body: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    var(--fs-body)/var(--lh-body) system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+h2 {
+  margin: 0;
+  font-size: var(--fs-h2);
+}
+h3 {
+  margin: 0 0 12px;
+  font-size: var(--fs-h3);
+}
+.muted {
+  color: var(--muted);
+}
+.small-text {
+  font-size: var(--fs-small);
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}

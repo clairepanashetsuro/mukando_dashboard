@@ -1,0 +1,12 @@
+.error-box {
+  background: var(--bad-soft);
+  color: var(--bad);
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-message);
+  margin: 0 0 12px;
+}

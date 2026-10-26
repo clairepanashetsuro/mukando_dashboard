@@ -1,0 +1,43 @@
+.logo {
+  display: block;
+  flex-shrink: 0;
+}
+.logo-a {
+  fill: var(--ink);
+}
+.logo-b {
+  fill: var(--brand);
+  fill-opacity: 0.9;
+}
+.logo-c {
+  fill: var(--info);
+  fill-opacity: 0.9;
+}
+.logo-animated circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-pop 0.55s cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
+}
+.logo-animated .logo-b {
+  animation-delay: 0.15s;
+}
+.logo-animated .logo-c {
+  animation-delay: 0.3s;
+}
+
+@keyframes logo-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-animated circle {
+    animation: none;
+  }
+}

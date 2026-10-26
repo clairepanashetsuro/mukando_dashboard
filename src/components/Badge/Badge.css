@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  background: var(--brand-soft);
+  color: var(--muted);
+}
+.badge.active {
+  background: var(--info-soft);
+  color: var(--brand);
+}
+.badge.paid {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.badge.overdue,
+.badge.pending {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.badge.defaulted {
+  background: var(--bad-soft);
+  color: var(--bad);
+}

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Four people climbing a hill at sunrise, each pulling the next one up">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cce0ff"/><stop offset="1" stop-color="#66a3ff"/></linearGradient><radialGradient id="glow" cx="690" cy="575" r="430" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#007acc" stop-opacity="0.85"/><stop offset="0.45" stop-color="#007acc" stop-opacity="0.35"/><stop offset="1" stop-color="#007acc" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="1000" fill="url(#sky)"/>
+<circle cx="690" cy="575" r="430" fill="url(#glow)"/>
+<circle cx="690" cy="575" r="60" fill="#cce0ff"/>
+<path d="M0 760 C 150 700 270 745 400 705 C 540 662 660 720 800 668 L800 1000 L0 1000 Z" fill="#00509e" opacity="0.22"/>
+<path d="M0 830 C 170 770 320 815 470 770 C 600 730 700 770 800 735 L800 1000 L0 1000 Z" fill="#00509e" opacity="0.4"/>
+<polygon points="0,1000 0,905 20,892.7 40,880.6 60,868.8 80,857.2 100,845.8 120,834.6 140,823.7 160,813 180,802.5 200,792.2 220,782.2 240,772.3 260,762.7 280,753.4 300,744.2 320,735.3 340,726.6 360,718.1 380,709.8 400,701.8 420,694 440,686.4 460,679 480,671.9 500,665 520,658.3 540,651.8 560,645.6 580,639.6 600,633.8 620,628.2 640,622.9 660,617.8 680,612.9 700,608.2 720,603.8 740,599.5 760,595.5 780,591.8 800,588.2 800,1000" fill="#003366"/>
+<polyline points="124,740.6 113.7,791.6 93.6,839.6" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="127.7,669.7 160.3,679.6 135.5,744.1 112.5,737.2" fill="#003366" stroke="#003366" stroke-width="9" stroke-linejoin="round"/>
+<polyline points="124,740.6 165.3,772.2 146,820.4" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="151" cy="643.6" r="18" fill="#003366"/>
+<polyline points="139,679.6 89.6,710 119,757.6" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="149,679.6 199.6,708 217.2,654.9" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="289,657 278.3,707.9 257.9,755.8" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="292.7,586.1 325.3,596 300.5,660.5 277.5,653.6" fill="#003366" stroke="#003366" stroke-width="9" stroke-linejoin="round"/>
+<polyline points="289,657 328.9,690.4 311,739.3" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="316" cy="560" r="18" fill="#003366"/>
+<polyline points="304,596 272.2,644.6 217.2,654.9" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="314,596 360.9,630.1 381.3,578" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="454,588.7 442.9,639.5 422.2,687.2" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="455.6,518.2 488.4,527.2 465.6,591.9 442.4,585.5" fill="#003366" stroke="#003366" stroke-width="9" stroke-linejoin="round"/>
+<polyline points="454,588.7 492.3,623.9 476,673.3" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="478.3" cy="491.7" r="18" fill="#003366"/>
+<polyline points="467,527.7 437.3,577.5 381.3,578" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="477,527.7 518.2,568.5 539.5,516.7" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="616,536.4 604.6,587.2 583.4,634.7" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="607.1,468.4 640.9,472.5 627.9,537.9 604.1,535" fill="#003366" stroke="#003366" stroke-width="9" stroke-linejoin="round"/>
+<polyline points="616,536.4 652.5,573.5 638,623.4" fill="none" stroke="#003366" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="626.8" cy="439.4" r="18" fill="#003366"/>
+<polyline points="619,475.4 594.3,527.9 539.5,516.7" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="629,475.4 686.8,479.9 711,429.4" fill="none" stroke="#003366" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="217.2" cy="654.9" r="9" fill="#003366"/>
+<circle cx="381.3" cy="578" r="9" fill="#003366"/>
+<circle cx="539.5" cy="516.7" r="9" fill="#003366"/>
+</svg>

@@ -1,0 +1,12 @@
+.brand {
+  font-weight: 700;
+  font-size: var(--fs-brand);
+  letter-spacing: 0.2px;
+  color: var(--brand);
+  padding: 0 8px;
+}
+.brand.big {
+  font-size: var(--fs-brand-lg);
+  padding: 0;
+  text-align: center;
+}
