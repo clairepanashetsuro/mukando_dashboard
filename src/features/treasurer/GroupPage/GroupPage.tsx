@@ -68,7 +68,7 @@ export function GroupPage() {
             <input
               type="number"
               min="0"
-              step="0.01"
+              step="10"
               required
               value={value.weekly_contribution}
               onChange={(e) =>

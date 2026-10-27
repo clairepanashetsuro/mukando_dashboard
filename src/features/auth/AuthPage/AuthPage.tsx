@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  Eye,
+  EyeOff,
   KeyRound,
   Lock,
   LogIn,

@@ -57,7 +57,7 @@ export function LoanForm({
           type="number"
           required
           min="0.01"
-          step="0.01"
+          step="10"
           value={f.principal}
           onChange={set("principal")}
         />

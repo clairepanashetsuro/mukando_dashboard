@@ -63,7 +63,7 @@ export function ContributionForm({
           type="number"
           required
           min="0.01"
-          step="0.01"
+          step="10"
           value={f.amount}
           onChange={set("amount")}
         />

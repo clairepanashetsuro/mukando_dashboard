@@ -69,7 +69,7 @@ export function RepaymentForm({
           type="number"
           required
           min="0.01"
-          step="0.01"
+          step="10"
           max={balance.data ? balance.data.balance : undefined}
           value={f.amount}
           onChange={set("amount")}
