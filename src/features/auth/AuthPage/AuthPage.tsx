@@ -22,7 +22,6 @@ import { Illustration } from "@/components/Illustration/Illustration";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { Notice } from "@/components/Notice/Notice";
 import { api } from "@/lib/api";
-// @ts-expect-error CSS is handled by the app bundler; TypeScript has no CSS module declaration.
 import "./AuthPage.css";
 
 type AuthMode = "login" | "signup" | "forgot" | "reset";
