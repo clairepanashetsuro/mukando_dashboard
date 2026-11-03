@@ -1,6 +1,6 @@
 "use client";
 
-import { KeyRound, Save } from "lucide-react";
+import { Eye, EyeOff, KeyRound, Save } from "lucide-react";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/Button/Button";
@@ -24,11 +24,20 @@ export function AccountPage({
   onLogout: () => Promise<void>;
 }) {
   const toast = useToast();
+
   const [profile, setProfile] = useState({
     full_name: user.full_name,
     email: user.email,
   });
-  const [pw, setPw] = useState({ current_password: "", new_password: "" });
+
+  const [pw, setPw] = useState({
+    current_password: "",
+    new_password: "",
+  });
+
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
   const [profileError, setProfileError] = useState("");
   const [pwError, setPwError] = useState("");
   const [busy, setBusy] = useState("");
@@ -37,11 +46,13 @@ export function AccountPage({
     e.preventDefault();
     setBusy("profile");
     setProfileError("");
+
     try {
       const updated = await api.patch<User>("/users/me", {
         full_name: profile.full_name.trim(),
         email: profile.email.trim(),
       });
+
       onUserChange(updated);
       toast("Profile updated");
     } catch (err) {
@@ -55,6 +66,7 @@ export function AccountPage({
     e.preventDefault();
     setBusy("pw");
     setPwError("");
+
     try {
       await api.post("/users/me/change-password", pw);
       toast("Password changed. Please sign in again.");
@@ -69,11 +81,13 @@ export function AccountPage({
   return (
     <>
       <PageHead title="My account" />
+
       {user.must_change_password && (
         <Notice tone="warn">
           You are using a temporary password. Please change it below.
         </Notice>
       )}
+
       <FormCard className="account-form" title="Profile" onSubmit={saveProfile}>
         <Field label="Full name">
           <input
@@ -85,6 +99,7 @@ export function AccountPage({
             }
           />
         </Field>
+
         <Field label="Email">
           <input
             type="email"
@@ -93,41 +108,73 @@ export function AccountPage({
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
           />
         </Field>
+
         <ErrorBox message={profileError} />
+
         <FormActions>
           <Button variant="primary" icon={Save} disabled={busy === "profile"}>
             Save profile
           </Button>
         </FormActions>
       </FormCard>
+
       <FormCard
         className="account-form"
         title="Change password"
         onSubmit={changePassword}
       >
         <Field label="Current password">
-          <input
-            type="password"
-            required
-            autoComplete="current-password"
-            value={pw.current_password}
-            onChange={(e) => setPw({ ...pw, current_password: e.target.value })}
-          />
+          <div className="password-input-wrapper">
+            <input
+              type={showCurrentPassword ? "text" : "password"}
+              required
+              autoComplete="current-password"
+              value={pw.current_password}
+              onChange={(e) =>
+                setPw({ ...pw, current_password: e.target.value })
+              }
+            />
+
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowCurrentPassword((prev) => !prev)}
+              aria-label={
+                showCurrentPassword ? "Hide password" : "Show password"
+              }
+            >
+              {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </Field>
+
         <Field
           label="New password"
           hint="At least 8 characters. You will be signed out everywhere."
         >
-          <input
-            type="password"
-            required
-            minLength={8}
-            autoComplete="new-password"
-            value={pw.new_password}
-            onChange={(e) => setPw({ ...pw, new_password: e.target.value })}
-          />
+          <div className="password-input-wrapper">
+            <input
+              type={showNewPassword ? "text" : "password"}
+              required
+              minLength={8}
+              autoComplete="new-password"
+              value={pw.new_password}
+              onChange={(e) => setPw({ ...pw, new_password: e.target.value })}
+            />
+
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowNewPassword((prev) => !prev)}
+              aria-label={showNewPassword ? "Hide password" : "Show password"}
+            >
+              {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </Field>
+
         <ErrorBox message={pwError} />
+
         <FormActions>
           <Button variant="primary" icon={KeyRound} disabled={busy === "pw"}>
             Change password

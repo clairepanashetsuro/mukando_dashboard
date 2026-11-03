@@ -46,6 +46,10 @@ export function AuthPage({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
   const [form, setForm] = useState<AuthForm>({
     full_name: "",
     email: "",
@@ -54,6 +58,7 @@ export function AuthPage({
     weekly_contribution: "0",
     new_password: "",
   });
+
   const set = (key: keyof AuthForm) => (e: ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [key]: e.target.value });
 
@@ -61,6 +66,8 @@ export function AuthPage({
     setMode(next);
     setError("");
     setNotice("");
+    setShowPassword(false);
+    setShowNewPassword(false);
   };
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
@@ -68,6 +75,7 @@ export function AuthPage({
     setBusy(true);
     setError("");
     setNotice("");
+
     try {
       if (mode === "login") {
         await api.login(form.email.trim(), form.password);
@@ -88,6 +96,7 @@ export function AuthPage({
         await api.reset(resetToken as string, form.new_password);
         window.history.replaceState({}, "", window.location.pathname);
         setMode("login");
+        setShowNewPassword(false);
         setNotice("Password updated. Sign in with your new password.");
       }
     } catch (err) {
@@ -110,7 +119,9 @@ export function AuthPage({
         <form className="auth-card" onSubmit={submit}>
           <Brand large />
           <h2>{titles[mode]}</h2>
+
           {notice && <Notice>{notice}</Notice>}
+
           {mode === "signup" && (
             <>
               <Field label="Full name" icon={User}>
@@ -121,6 +132,7 @@ export function AuthPage({
                   onChange={set("full_name")}
                 />
               </Field>
+
               <Field label="Group name" icon={Users}>
                 <input
                   required
@@ -129,6 +141,7 @@ export function AuthPage({
                   onChange={set("group_name")}
                 />
               </Field>
+
               <Field label="Weekly contribution">
                 <input
                   type="number"
@@ -140,6 +153,7 @@ export function AuthPage({
               </Field>
             </>
           )}
+
           {mode !== "reset" && (
             <Field label="Email" icon={Mail}>
               <input
@@ -151,40 +165,68 @@ export function AuthPage({
               />
             </Field>
           )}
+
           {(mode === "login" || mode === "signup") && (
             <Field
               label="Password"
               icon={Lock}
               hint={mode === "signup" ? "At least 8 characters" : undefined}
             >
-              <input
-                type="password"
-                required
-                minLength={mode === "signup" ? 8 : 1}
-                autoComplete={
-                  mode === "login" ? "current-password" : "new-password"
-                }
-                value={form.password}
-                onChange={set("password")}
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  minLength={mode === "signup" ? 8 : 1}
+                  autoComplete={
+                    mode === "login" ? "current-password" : "new-password"
+                  }
+                  value={form.password}
+                  onChange={set("password")}
+                />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </Field>
           )}
+
           {mode === "reset" && (
             <Field
               label="New password"
               icon={Lock}
               hint="At least 8 characters"
             >
-              <input
-                type="password"
-                required
-                minLength={8}
-                value={form.new_password}
-                onChange={set("new_password")}
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showNewPassword ? "text" : "password"}
+                  required
+                  minLength={8}
+                  value={form.new_password}
+                  onChange={set("new_password")}
+                />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowNewPassword((prev) => !prev)}
+                  aria-label={
+                    showNewPassword ? "Hide password" : "Show password"
+                  }
+                >
+                  {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </Field>
           )}
+
           <ErrorBox message={error} />
+
           <Button
             variant="primary"
             block
@@ -209,29 +251,34 @@ export function AuthPage({
                     ? "Update password"
                     : "Sign in"}
           </Button>
+
           <div className="auth-links">
             {mode === "login" && (
               <>
                 <LinkButton onClick={() => switchMode("forgot")}>
                   Forgot password?
                 </LinkButton>
+
                 <LinkButton onClick={() => switchMode("signup")}>
                   New group? Sign up as treasurer
                 </LinkButton>
               </>
             )}
+
             {mode !== "login" && (
               <LinkButton onClick={() => switchMode("login")}>
                 Back to sign in
               </LinkButton>
             )}
           </div>
+
           <p className="muted small-text">
             Members are added by their group treasurer and receive a temporary
             password.
           </p>
         </form>
       </div>
+
       <div className="auth-visual">
         <Illustration name="climb" priority className="auth-visual-art" />
         <p className="auth-visual-text">Saving together, growing together</p>

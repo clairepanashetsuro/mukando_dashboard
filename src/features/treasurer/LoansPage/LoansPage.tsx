@@ -14,6 +14,7 @@ import { money } from "@/lib/format";
 import type { Loan } from "@/lib/types";
 import { LoanBalance } from "../shared/LoanBalance/LoanBalance";
 import { useMembers } from "../shared/useMembers";
+import { LoanDetails } from "./LoanDetails";
 import { LoanEdit } from "./LoanEdit";
 import { LoanForm } from "./LoanForm";
 import "./LoansPage.css";
@@ -21,16 +22,21 @@ import "./LoansPage.css";
 export function LoansPage() {
   const list = useList<Loan>("/loans");
   const members = useMembers();
+
+  const [selectedLoan, setSelectedLoan] = useState<Loan | null>(null);
+
   const [modal, setModal] = useState<
     | { type: "add"; l?: undefined }
     | { type: "edit"; l: Loan }
     | { type: "del"; l: Loan }
     | null
   >(null);
+
   const close = (changed: boolean) => {
     setModal(null);
     if (changed) list.reload();
   };
+
   return (
     <>
       <PageHead
@@ -46,13 +52,17 @@ export function LoansPage() {
           </Button>
         }
       />
+
       <DataTable
         className="loans-table"
         list={list}
         empty="No loans yet."
         emptyIcon={HandCoins}
         columns={[
-          { label: "Member", render: (l) => members.name(l.member_id) },
+          {
+            label: "Member",
+            render: (l) => members.name(l.member_id),
+          },
           {
             label: "Principal",
             align: "right",
@@ -68,16 +78,27 @@ export function LoansPage() {
             align: "right",
             render: (l) => <LoanBalance loan={l} />,
           },
-          { label: "Due", render: (l) => l.due_date },
-          { label: "Status", render: (l) => <Badge value={l.status} /> },
+          {
+            label: "Due",
+            render: (l) => l.due_date,
+          },
+          {
+            label: "Status",
+            render: (l) => <Badge value={l.status} />,
+          },
           {
             label: "",
             align: "right",
             render: (l) => (
               <RowActions>
+                <Button small onClick={() => setSelectedLoan(l)}>
+                  View
+                </Button>
+
                 <Button small onClick={() => setModal({ type: "edit", l })}>
                   Edit
                 </Button>
+
                 <Button
                   small
                   variant="danger-outline"
@@ -90,8 +111,18 @@ export function LoansPage() {
           },
         ]}
       />
+
+      {selectedLoan && (
+        <LoanDetails
+          loan={selectedLoan}
+          onClose={() => setSelectedLoan(null)}
+        />
+      )}
+
       {modal?.type === "add" && <LoanForm members={members} onClose={close} />}
+
       {modal?.type === "edit" && <LoanEdit loan={modal.l} onClose={close} />}
+
       {modal?.type === "del" && (
         <FormModal
           title="Delete loan"

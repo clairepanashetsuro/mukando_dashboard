@@ -32,6 +32,8 @@ interface SidebarProps {
   active: TabKey;
   onSelect: (tab: TabKey) => void;
   onLogout: () => Promise<void>;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export function Sidebar({
@@ -41,19 +43,29 @@ export function Sidebar({
   active,
   onSelect,
   onLogout,
+  isOpen,
+  onClose,
 }: SidebarProps) {
   return (
-    <aside className="sidebar">
+    <aside
+      id="dashboard-sidebar"
+      className={`sidebar ${isOpen ? "sidebar-open" : ""}`}
+      aria-label="Main navigation"
+    >
       <Brand />
+
       <div className="role-chip">{roleLabel}</div>
+
       <nav>
         {tabs.map(([key, label]) => {
           const Icon = NAV_ICONS[key];
+
           return (
             <button
               key={key}
               className={`nav-item ${active === key ? "active" : ""}`}
               onClick={() => onSelect(key)}
+              aria-current={active === key ? "page" : undefined}
             >
               <Icon size={20} aria-hidden="true" />
               <span>{label}</span>
@@ -61,11 +73,13 @@ export function Sidebar({
           );
         })}
       </nav>
+
       <div className="sidebar-foot">
         <div className="who">
           <strong>{user.full_name}</strong>
           <span>{user.email}</span>
         </div>
+
         <Button block icon={LogOut} onClick={onLogout}>
           Sign out
         </Button>

@@ -10,6 +10,7 @@
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  z-index: 1001;
 }
 
 .role-chip {
@@ -23,7 +24,7 @@
   border-radius: 999px;
 }
 
-nav {
+.sidebar nav {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -135,28 +136,46 @@ nav {
 
 @media (max-width: 800px) {
   .sidebar {
-    background: #00509e;
-    position: static;
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(280px, 85vw);
+    height: 100dvh;
+    padding: 20px 14px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-in-out;
+    box-shadow: none;
   }
 
-  nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0;
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .sidebar nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 8px;
   }
 
   .sidebar-foot {
-    margin: 0 0 0 auto;
-    flex-direction: row;
-    align-items: center;
+    margin: auto 0 0;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .who {
-    display: none;
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
   }
 }

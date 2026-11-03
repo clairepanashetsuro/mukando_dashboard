@@ -52,7 +52,9 @@ export interface Contribution {
 export interface Loan {
   id: number;
   member_id: number;
+  group_id: number;
   principal: Amount;
+  interest_rate: Amount;
   interest_amount: Amount;
   due_date: string;
   status: LoanStatus;
@@ -98,4 +100,34 @@ export interface SignupPayload {
   password: string;
   group_name: string;
   weekly_contribution: string;
+}
+
+export interface AnalyticsMember {
+  member_id: number;
+  member_name: string;
+  contributions: number;
+  loans_issued: number;
+  repayments: number;
+}
+
+export interface MonthlyAnalytics {
+  month: string;
+  contributions: number;
+  loans_issued: number;
+  repayments: number;
+}
+
+export interface Analytics {
+  period: {
+    start_date: string | null;
+    end_date: string | null;
+  };
+  totals: {
+    contributions: number;
+    loans_issued: number;
+    repayments: number;
+  };
+  monthly: MonthlyAnalytics[];
+  members: AnalyticsMember[];
+  current_outstanding_balance: number;
 }
